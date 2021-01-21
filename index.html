@@ -1,0 +1,265 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Student Payment Info</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans" as="style" />
+    <link rel="stylesheet" href="https://allyoucan.cloud/cdn/icofont/1.0.1/icofont.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+    $( function() {
+      $( "#datepicker" ).datepicker();
+    } );
+    $( function() {
+      $( "#edit-datepicker" ).datepicker();
+    } );
+    $( function() {
+      $( "#count-datepicker" ).datepicker();
+    } );
+    $( function() {
+      $( "#pay-datepicker" ).datepicker();
+    } );
+    </script>
+</head>
+<body>
+
+  <div  class="header">
+      <div class="title"></div>
+      <div></div></div>
+    <main>
+        <div id="app"></div>
+    </main>
+</div>
+
+<div class="add-modal">
+  <div id="addModal" class="modal addmodal modal-fixed-footer">
+    <div class="modal-content">
+        <h5>Add Student</h5>
+      <div class="input-field">
+        <i class="material-icons prefix">account_circle</i>
+          <input type="text"  name="studentName" id="name" />
+          <label for="name">Student Name</label>
+      </div>
+      <div class="input-field">
+        <i class="icofont-ui-lock prefix"></i>
+        <input type="text" name="password" id="password"/>
+        <label for="class">Set Password</label>
+    </div>
+      <i class="icofont-calendar prefix"></i>Starting Date
+      <input type="text" id="datepicker" placeholder="Starting Date">
+
+      <div class="input-field">
+        <i class="icofont-stopwatch prefix"></i>
+        <input type="number" name="monthEnds" id="monthEnds"/>
+        <label for="class">Month ends in ? days</label>
+    </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close btn red white-text waves-effect waves-green btn-flat"> <i class="icofont-ui-close left"></i>Cancel</a>
+      <button class="btn green white-text waves-effect waves-green btn-flat" id="save"><i class="icofont-checked left"></i>Save</button>
+    </div>
+  </div>     
+  </div>
+
+
+  <div class="add-modal">
+    <div id="editModal" class="modal addmodal modal-fixed-footer">
+      <div class="modal-content">
+          <h5>Edit Student</h5>
+          <small>Name</small>
+        <div class="input-field">
+          <i class="material-icons prefix">account_circle</i>
+            <input type="text" name="studentName" id="edit-name" />
+        </div>
+        <small>Password</small>
+        <div class="input-field">
+          <i class="icofont-ui-lock prefix"></i>
+          <input type="text" name="password" id="edit-password"/>
+      </div>
+        <i class="icofont-calendar prefix"></i> <small>Starting Date</small>
+        <input type="text" id="edit-datepicker" placeholder="Starting Date">
+
+
+    
+    <small>Month Ends in how many days?</small>
+    <div class="input-field">
+      <i class="icofont-stopwatch prefix"></i>
+      <input type="number" name="edit-monthEnds" id="edit-monthEnds"/>
+  </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn green white-text waves-effect waves-green btn-flat" id="edit-save"><i class="icofont-checked left"></i>Save</button>
+        <a href="#!" class="modal-close btn red white-text waves-effect waves-green btn-flat"> <i class="icofont-ui-close left"></i>Cancel</a>
+      </div>
+    </div>     
+    </div>
+
+
+    <div class="student-modal">
+      <div id="studentModal" class="modal addmodal modal-fixed-footer">
+        <div class="modal-content">
+          <a href="#editModal" class="modal-trigger"><div class="edit-icon"><i class="icofont-ui-edit"></i></div></a>
+            <center><div class="logos"></div></center>
+            <div class="counted"></div>
+            <div class="options"></div>
+            <div class="flex2">
+            <div class="paymentHistory">
+              <i style="font-size: 25px;" class="icofont-pay"></i><span style="font-size: 14px; font-weight: bold;">Payment History</span>
+              <div id="myPayments" class="paymentList"></div>
+            </div>
+
+            <div class="paymentHistory">
+              <i style="font-size: 25px;" class="icofont-hand-up"></i><span style="font-size: 14px; font-weight: bold;">Present History</span>
+              <div id="myPresents" class="paymentList"></div>
+            </div>
+          </div>
+
+        </div>
+        
+        <div class="modal-footer">
+          <button class="delete btn red white-text waves-effect waves-green btn-flat"><i class="icofont-ui-delete left"></i>Delete</button>
+          <button class="modal-close btn orange white-text waves-effect waves-green btn-flat"><i class="icofont-ui-close left"></i>Close</button>
+        </div>
+      </div>
+              
+  </div>
+
+  <div class="student-modal">
+    <div id="reportViewModal" class="modal addmodal modal-fixed-footer">
+      <div class="modal-content">
+       <div class="reportView">
+       </div>
+
+       <div class="rInput" style="margin-bottom: 15px;">
+       <b>Respond:</b>
+       <textarea type="text" id="respondText"></textarea>
+       <br/>
+      </div>
+       <div>
+       <button class="btn green white-text waves-effect waves-green btn-flat" id="respond"><i class="material-icons left">send</i>Respond</button>
+      </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button class="reportDelete btn red white-text waves-effect waves-green btn-flat"><i class="icofont-ui-delete left"></i>Delete</button>
+        <button class="modal-close btn orange white-text waves-effect waves-green btn-flat"><i class="icofont-ui-close left"></i>Close</button>
+      </div>
+    </div>
+            
+</div>
+
+  <div class="countModal">
+  <div id="countModal" class="modal">
+    <div class="modal-content">
+      <h4>Are you sure?</h4>
+           <input type="text" class="count-input" id="count-datepicker">
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close btn red white-text waves-effect waves-green btn-flat"> <i class="icofont-ui-close left"></i>Cancel</a>
+      <button class="btn green white-text waves-effect waves-green btn-flat" id="count-save"><i class="icofont-checked left"></i>Save</button>
+    </div>
+  </div>
+  </div>
+
+  <div class="countModal">
+    <div id="payModal" class="modal">
+      <div class="modal-content">
+        <h4>Are you sure?</h4>
+             <input type="text" class="pay-input" id="pay-datepicker">
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close btn red white-text waves-effect waves-green btn-flat"> <i class="icofont-ui-close left"></i>Cancel</a>
+        <button class="btn green white-text waves-effect waves-green btn-flat" id="pay-save"><i class="icofont-checked left"></i>Save</button>
+      </div>
+    </div>
+    </div>
+    
+
+    <div class="addModal">
+      <div id="loginModal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+          <div class="login-input">
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close btn red white-text waves-effect waves-green btn-flat"> <i class="icofont-ui-close left"></i>Cancel</a>
+          <button class="btn green white-text waves-effect waves-green btn-flat" id="login"><i class="icofont-login left"></i>Login</button>
+        </div>
+      </div>
+      </div>
+
+      <div class="addModal">
+        <div id="reportModal" class="modal modal-fixed-footer">
+          <div class="modal-content">
+          <h6><i style="font-size: 16px;" class="icofont-flag"></i> Message/Report to your teacher: </h6>
+          <input type="text" placeholder="Title" id="report-title">
+          <textarea style="height: 200px;" type="text" placeholder="Write here" id="report-text"></textarea>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-close btn red white-text waves-effect waves-green btn-flat"> <i class="icofont-ui-close left"></i>Cancel</a>
+            <button class="btn green white-text waves-effect waves-green btn-flat send-report" id="send-report"><i class="material-icons left">send</i>Send</button>
+        </div>
+    </div>
+  </div>
+
+
+  <div class="addModal">
+    <div id="adminModal" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h6>Change Teacher's login info</h6>
+        <small>Teacher's username</small>
+        <div class="input-field">
+          <input type="text" id="adminName"/>
+        </div>
+        <small>Password</small>
+        <div class="input-field">
+          <input type="text" id="adminPassword"/>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close btn red white-text waves-effect waves-green btn-flat"> <i class="icofont-ui-close left"></i>Cancel</a>
+        <button class="btn green white-text waves-effect waves-green btn-flat send-report" id="edit-adminInfo"><i class="icofont-checked left"></i>Save</button>
+    </div>
+</div>
+</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src='https://cdn.rawgit.com/krasimir/navigo/master/lib/navigo.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-storage.js"></script>
+    <script>
+       var firebaseConfig = {
+    apiKey: "AIzaSyAYPF_k6MBimdXEkR5tfHo-AaDiYK2wjRU",
+    authDomain: "project-advance.firebaseapp.com",
+    databaseURL: "https://project-advance.firebaseio.com",
+    projectId: "project-advance",
+    storageBucket: "project-advance.appspot.com",
+    messagingSenderId: "986793570142",
+    appId: "1:986793570142:web:1a41e03d01d4094188e9cf",
+    measurementId: "G-862SKPSKXE"
+  };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+      var store = firebase.firestore();
+      var db = firebase.database();
+    </script>
+    <script src="./script.js"></script>
+</body>
+</html>
