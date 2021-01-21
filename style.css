@@ -1,0 +1,570 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+  }
+
+:root {
+    --blue: #007bff;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #dc3545;
+    --orange: #fd7e14;
+    --yellow: #ffc107;
+    --green: #28a745;
+    --teal: #20c997;
+    --cyan: #17a2b8;
+    --white: #fff;
+    --gray: #6c757d;
+    --gray-dark: #343a40;
+    --primary: #007bff;
+    --secondary: #6c757d;
+    --success: #28a745;
+    --info: #17a2b8;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #f8f9fa;
+    --dark: #343a40;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  background: #f3eeee; 
+  font-family: Google Sans, sans-serif;
+}
+
+#app{
+    margin-top: 60px;
+}
+
+.header{
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 50px;
+    padding: 7px;
+    background: var(--teal);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    z-index: 99;
+  }
+  
+  .header .avatar{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .header .avatar img{
+    height: 40px;
+    width: 40px;
+  }
+  
+  .header .title{
+    font-size: 20px;
+  }
+  
+  .header .myscore{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .header .myscore .count{
+    font-family: Google Sans;
+    background: #ced0d3;
+    color: rgb(24, 21, 21);
+    border-radius: 9px;
+    padding: 2px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .header .myscore .icofont-badge{
+    font-size: 20px;
+    color: gold;
+  }
+
+  .add-modal .modal{
+      width: 95%;
+      max-height: 100%;
+      height: 75%;
+      
+  }
+
+  .countModal .modal{
+    top: 40%!important;
+  }
+  .flex2{
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .student-modal .modal{
+    width: 95%;
+    max-height: 100%;
+    height: 90%;
+    top: 5% !important;
+}
+.list{
+  padding: 3px;
+  box-shadow: 0 2px 5px rgba(0,0,0, .2);
+  margin: 5px 0;
+  position: relative;
+} 
+
+.date{
+  display: flex;
+  justify-content: space-between;
+}
+
+.options{
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 0px;
+  flex-wrap: wrap;
+  font-size: 13px;
+
+}
+
+ i.left{
+margin-right: 3px !important;
+}
+
+.counted{
+  text-align: center;
+  margin: 5px 5px;
+}
+  .add{
+      position: fixed;
+      right: 7%;
+      bottom: 7%;
+      z-index: 99;
+
+  }
+
+  .loader{
+    position: absolute;
+    top: 50%;
+    left: 40%;
+  }
+
+.students, .studentsPayments, .studentsPayble{
+  padding: 10px;
+  cursor: pointer;
+}
+  .stdentList{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0, .2);
+    margin: 5px 0px;
+    text-align: center;
+    border-radius: 5px;
+    position: relative;
+    background: #fff;
+    overflow: hidden;
+    font-family: Google Sans, 'SiyamRupali';
+    height: 60px;
+    width: 100%;
+    }
+    
+    .at{
+        position: absolute;
+        top: 2%;
+        right: 2%;
+        text-align: right;
+        /* font-family: 'JetBrains Mono', monospace; */
+        color:  #666464;
+        font-size: 9px;
+        /* padding: 3px; */
+    }
+    
+    .class{
+        position: absolute;
+        left: 0%;
+        top: 2%;
+        font-size: 11px;
+        padding: 2px;
+        background: var(--danger);
+        color: #fff;
+        border-radius: 3px;
+        font-weight: bold;
+        box-shadow: 0 1px 8px rgba(0,0,0,.3);
+    }
+    
+    .author{
+        color: #666464;
+        font-size: 10px;
+    }
+
+  
+   
+    .logo{
+     height: 50px;
+     width: 50px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     font-size: 25px;
+     border-radius: 50%;
+     /* border: 2px solid var(--teal); */
+     color: #fff;
+     background: var(--teal);
+     position: relative;
+    }
+
+    .edit-icon{
+     position: absolute;
+     right: 5%;
+     background: var(--dark);
+     padding: 5px;
+     color: #fff;
+     height: 30px;
+     width: 30px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     border-radius: 50%;
+     font-size: 17px;
+     cursor: pointer;
+    }
+
+    .ln{
+      display: flex;
+      align-items: center;
+    }
+    
+    .stdentList .title{
+      font-size: 18px;
+      font-weight: bold;
+      color: #000;
+      margin-left: 10px;
+    }
+    
+    .stdentList .others{
+      font-size: 13px;
+      color: #000;
+    }
+
+    .totalCount{
+      width: 40px;
+    }
+
+    .st{
+      position: absolute;
+      right: 25%;
+    }
+
+    .count{
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .counter{
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .payble{
+      text-align: center;
+      margin: 5px 10px;
+      padding: 10px;
+      box-shadow: 0 1px 8px rgba(0,0,0, .2);
+      width: 400px;
+      color: #fff;
+    }
+
+    #payble{
+      background: var(--danger);
+    }
+    
+    #paid{
+      background: var(--success);
+    }
+    .paybleCount{
+      font-size: 30px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .payble_text{
+      font-weight: bold;
+      color: #fff;
+    }
+
+    #pStatus{
+      color: #fff;
+      padding: 2px;
+      font-weight: bold;
+      border-radius: 5px;
+      font-size: 12px;
+      /* position: absolute;
+      right: 27%;
+      top: 35%; */
+    }
+
+    .list{
+      padding: 3px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .noData{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80%;
+      text-align: center;
+    }
+
+    .noDataSmall{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50%;
+      text-align: center;
+    }
+
+    .noDataSmall .small{
+      font-size: 60px;
+      color: var(--secondary);
+    }
+
+    .noData .big{
+      font-size: 100px;
+      color: var(--secondary);
+    }
+
+    .noDataText{
+      font-size: 17px;
+      font-weight: bold;
+      color: var(--secondary);
+    }
+
+    .startingDate{
+      position: absolute;
+      bottom: 10%;
+      left: 21%;
+      font-weight: bold;
+      color: var(--gray-dark);
+      font-size: 11px;
+    }
+
+    .paymentList{
+      padding: 3px;
+
+    }
+
+    .login{
+      position: fixed;
+      background: var(--dark);
+      height: 94%;
+      width: 100%;
+      top: 8%;
+      left: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    .loginOption{
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+      
+    }
+
+    .option{
+      font-size: 20px;
+      margin: 0px 10px;
+      padding: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0, .2);
+      border-radius: 10px;
+      cursor: pointer;
+      background: #fff;
+    }
+
+    .licon{
+      font-size: 40px;
+    }
+    
+    .logout{
+      font-size: 20px;
+      margin-right: 13px;
+      cursor: pointer;
+      position: relative;
+      display: none;
+      position: absolute;
+      right: 4%;
+      top: 13%;
+    }
+
+    .logout::after{
+      content: 'Logout';
+      position: absolute;
+      font-size: 10px;
+      left: -40%;
+      bottom: -65%;
+      font-weight: bold;
+    }
+  
+    .report{
+      cursor: pointer;
+      position: fixed;
+      right: 80px;
+      font-size: 25px;
+      color: var(--light);
+      box-shadow: 0 3px 5px rgba(0,0,0, .2);
+      padding: 4px;
+      border-radius: 50%;
+      top: 1%;
+      
+
+    }
+
+    
+
+    .notification{
+      cursor: pointer;
+      position: fixed;
+      right: 130px;
+      font-size: 25px;
+      color: var(--light);
+      box-shadow: 0 3px 5px rgba(0,0,0, .2);
+      padding: 4px;
+      border-radius: 50%;
+      top: 1%;
+      
+
+    }
+
+    .notification::after{
+      content: '';
+      font-size: 10px;
+      font-weight: 900;
+      position: absolute;
+      left: 0px;
+      bottom: -13px;
+    }
+
+    .splash{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .splash img{
+      height: 200px;
+    
+    }
+
+  .splashText{
+    margin-bottom: 60px;
+    font-size: 30px;
+  }
+
+  .appMaker{
+    font-size: 8px;
+    color: var(--secondary);
+    padding-top: 100px;
+  }
+
+  .adminUsername, .smallText{
+    font-size: 13px;
+    margin-left: 5px;
+  }
+
+  .reportTitle{
+    font-size: 17px;
+    font-weight: bold;
+    /* box-shadow: 0 2px 5px rgba(0,0,0, .2); */
+    padding: 5px;
+  }
+
+  .reportBody{
+    margin-top: 10px;
+    font-size: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0, .2);
+    padding: 5px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    position: relative;
+
+  }
+  .reportBody span{
+    position: absolute;
+    top: 0%;
+    font-size: 10px !important;
+    left: 3%;
+
+  }
+
+  .reportNotifier{
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+    background: gold;
+    display: none;
+  }
+
+  .noMargin{
+    margin-top: 0px !important;
+  }
+
+  .reportBodyText{
+    padding-left: 10px;
+  }
+
+  .resTitle{
+    font-weight: bold;
+    color: var(--success);
+    margin-bottom: 50px;
+
+  }
+
+  .messages .stdentList .st{
+    
+    right: 5%;
+    font-weight: bold;
+  }
+
+  .appnotice{
+    position: absolute;
+    bottom: 2%;
+    text-align: left ;
+    left: 3%;
+    width: 100%;
+    color: var(--green);
+  }
+
+  .appnotice2{
+    position: absolute;
+    bottom: 10%;
+    text-align: left ;
+    left: 0%;
+    width: 100%;
+    padding: 5px;
+    color: var(--danger);
+  }
