@@ -40,43 +40,11 @@ $(document).ready(function(){
   
 });
 
-(function (window, Navigo) {
-  const Router = (function (root, useHash, hash, Navigo) {
-    class Router extends Navigo {
-      constructor(root, useHash, hash) {
-        super(root, useHash, hash);
-        this.init();
-      }
+const router = new Navigo('/');
 
-      init() {
-        document.body.addEventListener(
-          "click",
-          (e) => {
-            if (e.target !== e.currentTarget && e.target.nodeName === "A") {
-              e.preventDefault();
-              this.navigate(e.target.pathname);
-            }
-
-            e.stopPropagation();
-          },
-          false
-        );
-      }
-
-      set routes(routes) {
-        routes = routes || {};
-        this.on(routes);
-        this.resolve();
-      }
-    }
-
-    return new Router(root, useHash, hash);
-    
-  })(null, true, "#!", Navigo);
-
-  const init = () => {
     const app = document.querySelector("#app");
-    Router.routes = {
+
+    router.on({
         "/": function () {
           $('.header .title').html(`<i class="icofont-graduate"></i> Student Payment Info<br />
           `);
@@ -115,7 +83,7 @@ $(document).ready(function(){
                 <div style="margin-top: 75px" class="counter">
                
                 <div id="payble" class="payble">
-                <a href="#!/payble">
+                <a href="/payble" data-navigo>
                 <div id="paybleCount" class="paybleCount">  <div class="preloader-wrapper small active">
                 <div class="spinner-layer spinner-green-only">
                   <div class="circle-clipper left">
@@ -133,7 +101,7 @@ $(document).ready(function(){
              
                
                 <div id="paid" class="payble">
-                <a href="#!/payments">
+                <a href="/payments" data-navigo>
                 <div id="paidCount" class="paybleCount">  <div class="preloader-wrapper small active">
                 <div class="spinner-layer spinner-red-only">
                   <div class="circle-clipper left">
@@ -760,24 +728,11 @@ $(document).ready(function(){
         });
 
       },
-  };
-
-}
-
-//Hooks
-Router.hooks({
-  before: function (done, params) {
-    done();
-  },
-  after: function (params, query) {
-  },
-  leave: function (params) {
-  },
-});
+  }).resolve();
 
 
-window.addEventListener("load", init, false);
-})(window, Navigo)
+
+
 
 
  
