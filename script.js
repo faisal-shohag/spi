@@ -137,8 +137,6 @@ const router = new Navigo('/');
                 </div>
                 `;
       
-                
-      
                 db.ref('spi/payments/').on('value', allPay=>{
                     let paymentsArray= [];
                     allPay.forEach(pay=>{
@@ -482,122 +480,8 @@ const router = new Navigo('/');
           
         },
       
-        "/messages": function(){
-          $('.header .title').html(`<a href="#!/"><span style="vertical-align: middle; color: #fff;" class="material-icons">keyboard_backspace</span></a>Messages & Reports`);
-            app.innerHTML=`
-                   <div class="messages">  
-                   </div>
-            `
-            db.ref('spi/reports').on('value', reports=>{
-              document.querySelector('.messages').innerHTML=''
-              if(reports.val() === null){
-                document.querySelector(".messages").innerHTML = `
-                <div class="noData">
-                <div class="">
-                <i class="icofont-dropbox big"></i><br>
-                <div class="noDataText">No Data!</div>
-                </div
-                </div>
-                `;
-              }
-              reports.forEach(report=>{
-               
-               document.querySelector('.messages').innerHTML+=`
-               <a href="#reportViewModal" class="modal-trigger rp" id="${
-                report.key
-              }"><div class="stdentList">
-              <div class="ln">
-              <div class="logo" style="background: ${logoColor(
-                firstLetter(report.val().title)
-              )}">${firstLetter(report.val().title)}
-              </div>
-              <div class="title" style="padding-bottom: 10px;">${report.val().title}</div>
-              <div class="startingDate">From: <span style="font-size: 14px;">${report.val().name}<span></div>
-              </div>
-              <div class="st" style="color: red;">${getRelativeTime(report.val().time)}</div>
-              </div>
-              </div></a>
-               `
-              });
-              
-              $('.rp').click(function(){
-                var reportKey = $(this)[0].id;
-                db.ref('spi/reports/'+reportKey).on('value', rpBody=>{
-                  var userKey = rpBody.val().key;
-                  $('.reportView').html(`
-                  <div class="reportBody">
-                  <div class="reportTitle">${rpBody.val().title}</div>
-                  <span style="color: red; font-weight: bold; font-size: 12px;">${getRelativeTime(rpBody.val().time)}</span>
-                  <div class="reportBodyText">${rpBody.val().report}</div>
-                  <hr>
-                  <div class="resTitle"><i class="icofont-ui-check"></i> Responds: </div>
-                  <div class="reportBody respondView">
-                  <center>No Respond!</center>
-                  </div>
-                  </div>
-                  `);
-      
-      
-                  $('#respond').click(function(){
-                    db.ref('spi/reports/'+reportKey+'/responds').push({
-                      respond: $('#respondText').val(),
-                      time: reportDate.toString()
-                    });
-                    db.ref('spi/students/'+userKey+'/respond').update({
-                      title: rpBody.val().title,
-                      report: rpBody.val().report,
-                      time: reportDate.toString(),
-                      respond: $('#respondText').val()
-                    });
-                    Swal.fire({
-                      title: 'Successfully Responded!',
-                      icon:'success'
-                    })
-                  });
-      
-                  $('.reportDelete').click(function(){
-                    Swal.fire({
-                      title: "Are you sure?",
-                      icon: 'warning',
-                      text: "This will be will be deleted!",
-                      showCancelButton: true,
-                      confirmButtonText: `Yes`,
-                    }).then((result) => {
-                      /* Read more about isConfirmed, isDenied below */
-                      if (result.isConfirmed) {
-                        Swal.fire("Deleted!", "", "success").then(r=>{
-                          //window.location.reload();
-                          db.ref('spi/reports/'+reportKey).remove();
-                          $('#reportViewModal').modal('close');
-                        })
-                      } else if (result.isDenied) {
-                        Swal.fire("Changes are not saved", "", "info");
-                      }
-                    });
-                   
-                  })
-               
-                  db.ref('spi/reports/'+reportKey+'/responds').on('value', res=>{
-                    $('.respondView').html('');
-                    if(res.val()===null){
-                      $('.respondView').html('Not responded yet!');
-                    }
-                    res.forEach(resp=>{
-                 document.querySelector('.respondView').innerHTML+=`
-                 <div>
-                 <span style="color: var(--danger); font-weight: bold; font-size: 12px">${getRelativeTime(resp.val().time)}</span><br>
-                 <span>${resp.val().respond}</span>
-                 </div>
-                 `
-                    })
-                  })
-                })
-              });
-            })
-        },
-      
         "/payments": function(){
-            $('.header .title').html(`<a href="#!/"><span style="vertical-align: middle; color: #fff;" class="material-icons">keyboard_backspace</span></a>Payment History`);
+            $('.header .title').html(`<a href="/" data-navigo><span style="vertical-align: middle; color: #fff;" class="material-icons">keyboard_backspace</span></a>Payment History`);
             app.innerHTML=`
             <div class="studentsPayments">
             <div class="loader">
@@ -674,7 +558,7 @@ const router = new Navigo('/');
       
       
         "/payble": function(){
-          $('.header .title').html(`<a href="#!/"><span style="vertical-align: middle; color: #fff;" class="material-icons">keyboard_backspace</span></a>Should Pay`);
+          $('.header .title').html(`<a href="/"><span style="vertical-align: middle; color: #fff;" class="material-icons">keyboard_backspace</span></a>Should Pay`);
           app.innerHTML=`
           <div class="studentsPayble">
           <div class="loader">
