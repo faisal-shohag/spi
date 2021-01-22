@@ -29,6 +29,11 @@ window.addEventListener("offline", () => {
   Swal.fire('You are offline now!', 'Please check your internet connections!', 'info');
 });
 
+
+setTimeout(function(){
+  $('.splash').hide('slow');
+}, 3000)
+
 // Random Color
 $(".header").css("background-color", Colors[Math.floor(Math.random() * 11)]);
 
@@ -45,7 +50,7 @@ const router = new Navigo('/');
     const app = document.querySelector("#app");
 
     router.on({
-        "/": function () {
+        "/index.html": function () {
           $('.header .title').html(`<i class="icofont-graduate"></i> Student Payment Info<br />
           `);
       
