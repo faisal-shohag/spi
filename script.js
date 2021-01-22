@@ -45,7 +45,10 @@ $(document).ready(function(){
   
 });
 
-const router = new Navigo('/');
+var root = null;
+var useHash = true; // Defaults to: false
+var hash = '#!'; // Defaults to: '#'
+var router = new Navigo(root, useHash, hash);
 
     const app = document.querySelector("#app");
 
