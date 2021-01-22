@@ -50,7 +50,7 @@ const router = new Navigo('/');
     const app = document.querySelector("#app");
 
     router.on({
-        "/index.html": function () {
+        "/": function () {
           $('.header .title').html(`<i class="icofont-graduate"></i> Student Payment Info<br />
           `);
       
